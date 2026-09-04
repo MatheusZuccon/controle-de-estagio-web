@@ -1,0 +1,7 @@
+node_modules/
+.angular/
+dist/
+.cache/
+.env
+.env.*
+!.env.example
