@@ -1,0 +1,29 @@
+<main class="profile-page">
+  <header class="app-header"><div class="brand"><b>FT</b><span>FAETERJ Petrópolis — Sistema de Gestão de Estágios</span></div><button type="button" class="exit" (click)="auth.logout()">Sair</button></header>
+  <section class="page-heading"><p class="eyebrow">CONTROLE DE ESTAGIÁRIO</p><h1>Meu cadastro</h1><p>Informe seus dados para liberar o controle de TCE.</p></section>
+  <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <section class="form-section"><div class="section-title">Dados pessoais</div><div class="form-grid">
+      <div class="photo-field"><img *ngIf="photoPreview" [src]="photoPreview" alt="Prévia da foto"><span *ngIf="!photoPreview">Foto 3x4 opcional</span><input type="file" accept="image/*" (change)="selectPhoto($event)"></div>
+      <div class="field wide"><label for="name">Nome <em>*</em></label><input id="name" formControlName="name" maxlength="150" autocomplete="name"><mat-error *ngIf="showError('name')">{{ errorMessage('name') }}</mat-error></div>
+      <div class="field"><label for="enrollment">Matrícula <em>*</em></label><input id="enrollment" formControlName="enrollment" maxlength="16" inputmode="numeric" (input)="digitsOnly('enrollment')"><mat-error *ngIf="showError('enrollment')">{{ errorMessage('enrollment') }}</mat-error></div>
+      <div class="field"><label for="socialName">Nome social</label><input id="socialName" formControlName="socialName" maxlength="150"></div>
+      <div class="field"><label for="birthDate">Nascimento <em>*</em></label><input id="birthDate" type="date" formControlName="birthDate"><mat-error *ngIf="showError('birthDate')">{{ errorMessage('birthDate') }}</mat-error></div>
+      <div class="field"><label for="gender">Gênero</label><input id="gender" formControlName="gender" maxlength="100"></div>
+      <div class="field"><label for="phone">Telefone celular <em>*</em></label><input id="phone" formControlName="phone" maxlength="15" inputmode="numeric" placeholder="(00) 00000-0000" (input)="formatPhone()"><mat-error *ngIf="showError('phone')">{{ errorMessage('phone') }}</mat-error></div>
+      <div class="field wide"><label for="address">Endereço <em>*</em></label><input id="address" formControlName="address" maxlength="200" autocomplete="street-address"><mat-error *ngIf="showError('address')">{{ errorMessage('address') }}</mat-error></div>
+      <div class="field"><label for="postalCode">CEP <em>*</em></label><input id="postalCode" formControlName="postalCode" maxlength="9" inputmode="numeric" placeholder="00000-000" (input)="formatCep()"><mat-error *ngIf="showError('postalCode')">{{ errorMessage('postalCode') }}</mat-error></div>
+      <div class="field"><label for="neighborhood">Bairro <em>*</em></label><input id="neighborhood" formControlName="neighborhood" maxlength="150"><mat-error *ngIf="showError('neighborhood')">{{ errorMessage('neighborhood') }}</mat-error></div>
+      <div class="field"><label for="city">Cidade <em>*</em></label><input id="city" formControlName="city" maxlength="150"><mat-error *ngIf="showError('city')">{{ errorMessage('city') }}</mat-error></div>
+      <div class="field"><label for="state">UF <em>*</em></label><input id="state" formControlName="state" maxlength="2" (input)="formatState()"><mat-error *ngIf="showError('state')">{{ errorMessage('state') }}</mat-error></div>
+    </div></section>
+    <section class="form-section"><div class="section-title">Dados acadêmicos</div><div class="form-grid">
+      <div class="field wide"><label for="course">Curso <em>*</em></label><select id="course" formControlName="course"><option value="">Selecione</option><option [value]="course">{{ course }}</option></select><mat-error *ngIf="showError('course')">{{ errorMessage('course') }}</mat-error></div>
+      <div class="field"><label for="identity">Identidade <em>*</em></label><input id="identity" formControlName="identity" maxlength="50"><mat-error *ngIf="showError('identity')">{{ errorMessage('identity') }}</mat-error></div>
+      <div class="field"><label for="cpf">CPF <em>*</em></label><input id="cpf" formControlName="cpf" maxlength="14" inputmode="numeric" placeholder="000.000.000-00" (input)="formatCpf()"><mat-error *ngIf="showError('cpf')">{{ errorMessage('cpf') }}</mat-error></div>
+      <div class="field"><label for="academicPeriod">Período/Módulo <em>*</em></label><select id="academicPeriod" formControlName="academicPeriod"><option value="">Selecione</option><option *ngFor="let period of periods" [value]="period">{{ period }}º período</option></select><mat-error *ngIf="showError('academicPeriod')">{{ errorMessage('academicPeriod') }}</mat-error></div>
+      <div class="field"><label for="educationLevel">Nível de escolaridade <em>*</em></label><select id="educationLevel" formControlName="educationLevel"><option value="">Selecione</option><option *ngFor="let level of educationLevels" [value]="level[0]">{{ level[1] }}</option></select><mat-error *ngIf="showError('educationLevel')">{{ errorMessage('educationLevel') }}</mat-error></div>
+    </div></section>
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <footer class="form-actions"><button type="button" class="secondary" (click)="router.navigateByUrl('/inicio')">Cancelar</button><button type="submit" class="primary">Salvar cadastro</button></footer>
+  </form>
+</main>

@@ -33,5 +33,5 @@ export class LoginComponent {
   error = '';
   form = this.fb.group({ email: ['aluno@faeterj-petropolis.edu.br', [Validators.required, Validators.email]], password: ['Senha@123', Validators.required] });
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
-  submit(): void { if (this.form.invalid) return; this.error = ''; this.auth.login(this.form.value.email!, this.form.value.password!).subscribe({ next: () => this.router.navigateByUrl('/tces'), error: response => this.error = response.error?.message || 'Não foi possível entrar. Verifique suas credenciais.' }); }
+  submit(): void { if (this.form.invalid) return; this.error = ''; this.auth.login(this.form.value.email!, this.form.value.password!).subscribe({ next: () => this.router.navigateByUrl('/inicio'), error: response => this.error = response.error?.message || 'Não foi possível entrar. Verifique suas credenciais.' }); }
 }

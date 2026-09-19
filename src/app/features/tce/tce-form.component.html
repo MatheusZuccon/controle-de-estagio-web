@@ -1,0 +1,126 @@
+<main class="form-page">
+  <header class="app-header">
+    <div class="brand"><b>FT</b><span>FAETERJ Petrópolis — Sistema de Gestão de Estágios</span></div>
+    <button type="button" class="exit" (click)="router.navigateByUrl('/tces')">Sair</button>
+  </header>
+
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">CONTROLE DE DOCUMENTOS</p>
+      <h1>{{ id ? 'Editar' : 'Cadastrar' }} TCE</h1>
+      <p>Preencha os dados do Termo de Compromisso de Estágio.</p>
+    </div>
+    <button type="submit" form="tce-form" class="primary header-save">Salvar TCE</button>
+  </section>
+
+  <form id="tce-form" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <section class="form-section">
+      <div class="section-title">
+        <span>Dados do TCE</span>
+      </div>
+
+      <div class="form-grid">
+        <div class="field number-field">
+          <label for="number">Número do TCE <em>*</em></label>
+          <input id="number" formControlName="number" minlength="3" maxlength="20" inputmode="numeric" autocomplete="off" (input)="digitsOnly('number')">
+          <mat-error *ngIf="showError('number')">{{ errorMessage('number') }}</mat-error>
+        </div>
+
+        <div class="field company-field">
+          <label for="company">Empresa concedente <em>*</em></label>
+          <input id="company" formControlName="companyName" minlength="3" maxlength="150" autocomplete="organization">
+          <mat-error *ngIf="showError('companyName')">{{ errorMessage('companyName') }}</mat-error>
+        </div>
+
+        <div class="field">
+          <label for="enrollment">Matrícula <em>*</em></label>
+          <input id="enrollment" formControlName="enrollment" minlength="3" maxlength="16" inputmode="numeric" autocomplete="off" (input)="digitsOnly('enrollment')">
+          <mat-error *ngIf="showError('enrollment')">{{ errorMessage('enrollment') }}</mat-error>
+        </div>
+
+        <div class="field student-field">
+          <label for="studentName">Nome do estagiário <em>*</em></label>
+          <input id="studentName" formControlName="studentName" minlength="3" maxlength="150" autocomplete="name">
+          <mat-error *ngIf="showError('studentName')">{{ errorMessage('studentName') }}</mat-error>
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail institucional <em>*</em></label>
+          <input id="email" type="email" formControlName="email" minlength="3" autocomplete="email">
+          <mat-error *ngIf="showError('email')">{{ errorMessage('email') }}</mat-error>
+        </div>
+
+        <div class="field">
+          <label for="phone">Telefone celular <em>*</em></label>
+          <input id="phone" formControlName="phone" minlength="3" maxlength="15" inputmode="numeric" placeholder="(00) 00000-0000" autocomplete="tel" (input)="formatPhone()">
+          <mat-error *ngIf="showError('phone')">{{ errorMessage('phone') }}</mat-error>
+        </div>
+
+        <div class="field">
+          <label for="isPaid">Estágio remunerado <em>*</em></label>
+          <select id="isPaid" formControlName="isPaid" (change)="updateStipendAvailability()">
+            <option [ngValue]="null" disabled>Selecione</option>
+            <option [ngValue]="true">Sim</option>
+            <option [ngValue]="false">Não</option>
+          </select>
+          <mat-error *ngIf="showError('isPaid')">{{ errorMessage('isPaid') }}</mat-error>
+        </div>
+
+        <div class="field" [class.disabled]="form.controls.isPaid.value !== true">
+          <label for="stipendAmount">Valor da bolsa <em *ngIf="form.controls.isPaid.value === true">*</em></label>
+          <input id="stipendAmount" formControlName="stipendAmount" inputmode="numeric" autocomplete="off" (input)="formatStipend()">
+          <mat-error *ngIf="showError('stipendAmount')">{{ errorMessage('stipendAmount') }}</mat-error>
+        </div>
+
+        <div class="field">
+          <label for="startDate">Início do estágio <em>*</em></label>
+          <input id="startDate" type="date" formControlName="startDate">
+          <mat-error *ngIf="showError('startDate')">{{ errorMessage('startDate') }}</mat-error>
+        </div>
+
+        <div class="field">
+          <label for="endDate">Término do estágio <em>*</em></label>
+          <input id="endDate" type="date" formControlName="endDate">
+          <mat-error *ngIf="showError('endDate')">{{ errorMessage('endDate') }}</mat-error>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section attachments">
+      <div class="section-title">
+        <span>Anexos</span>
+        <small>O documento do TCE deve estar em PDF.</small>
+      </div>
+
+      <div class="upload-grid">
+        <div class="upload required">
+          <label for="document">Documento do TCE <em>*</em></label>
+          <div class="current-file" *ngIf="existingDocument">
+            <span>Arquivo atual: <b>{{ existingDocument.originalName }}</b></span>
+            <button type="button" (click)="download(existingDocument)">Baixar</button>
+          </div>
+          <input id="document" type="file" accept="application/pdf" (change)="file($event, 'document')">
+          <small>{{ document ? 'Novo arquivo selecionado: ' + document.name : existingDocument ? 'Selecione outro PDF somente se desejar substituí-lo.' : 'Nenhum arquivo selecionado' }}</small>
+          <mat-error *ngIf="showDocumentError()">Documento do TCE é obrigatório.</mat-error>
+        </div>
+
+        <div class="upload">
+          <label for="photo">Foto do estagiário <span>opcional</span></label>
+          <div class="current-file" *ngIf="existingPhoto">
+            <span>Arquivo atual: <b>{{ existingPhoto.originalName }}</b></span>
+            <button type="button" (click)="download(existingPhoto)">Baixar</button>
+          </div>
+          <input id="photo" type="file" accept="image/*" (change)="file($event, 'photo')">
+          <small>{{ photo ? 'Nova foto selecionada: ' + photo.name : existingPhoto ? 'Selecione outra imagem somente se desejar substituí-la.' : 'Nenhum arquivo selecionado' }}</small>
+        </div>
+      </div>
+    </section>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+    <footer class="form-actions">
+      <button type="button" class="secondary" (click)="router.navigateByUrl('/tces')">Cancelar</button>
+      <button type="submit" class="primary">Salvar TCE</button>
+    </footer>
+  </form>
+</main>
