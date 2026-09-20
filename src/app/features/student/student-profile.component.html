@@ -1,7 +1,7 @@
 <main class="profile-page">
-  <header class="app-header"><div class="brand"><b>FT</b><span>FAETERJ Petrópolis — Sistema de Gestão de Estágios</span></div><button type="button" class="exit" (click)="auth.logout()">Sair</button></header>
-  <section class="page-heading"><p class="eyebrow">CONTROLE DE ESTAGIÁRIO</p><h1>Meu cadastro</h1><p>Informe seus dados para liberar o controle de TCE.</p></section>
-  <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+  <app-header></app-header>
+  <section class="page-heading"><div><p class="eyebrow">CONTROLE DE ESTAGI&#193;RIO</p><h1>Meu cadastro</h1><p>Informe seus dados para liberar o controle de TCE.</p></div><div class="heading-actions"><button type="button" class="secondary header-back" (click)="router.navigateByUrl('/inicio')">Voltar</button><button type="submit" form="student-profile-form" class="primary header-save">Salvar cadastro</button></div></section>
+  <form id="student-profile-form" [formGroup]="form" (ngSubmit)="save()" novalidate>
     <section class="form-section"><div class="section-title">Dados pessoais</div><div class="form-grid">
       <div class="photo-field"><img *ngIf="photoPreview" [src]="photoPreview" alt="Prévia da foto"><span *ngIf="!photoPreview">Foto 3x4 opcional</span><input type="file" accept="image/*" (change)="selectPhoto($event)"></div>
       <div class="field wide"><label for="name">Nome <em>*</em></label><input id="name" formControlName="name" maxlength="150" autocomplete="name"><mat-error *ngIf="showError('name')">{{ errorMessage('name') }}</mat-error></div>
@@ -22,6 +22,7 @@
       <div class="field"><label for="cpf">CPF <em>*</em></label><input id="cpf" formControlName="cpf" maxlength="14" inputmode="numeric" placeholder="000.000.000-00" (input)="formatCpf()"><mat-error *ngIf="showError('cpf')">{{ errorMessage('cpf') }}</mat-error></div>
       <div class="field"><label for="academicPeriod">Período/Módulo <em>*</em></label><select id="academicPeriod" formControlName="academicPeriod"><option value="">Selecione</option><option *ngFor="let period of periods" [value]="period">{{ period }}º período</option></select><mat-error *ngIf="showError('academicPeriod')">{{ errorMessage('academicPeriod') }}</mat-error></div>
       <div class="field"><label for="educationLevel">Nível de escolaridade <em>*</em></label><select id="educationLevel" formControlName="educationLevel"><option value="">Selecione</option><option *ngFor="let level of educationLevels" [value]="level[0]">{{ level[1] }}</option></select><mat-error *ngIf="showError('educationLevel')">{{ errorMessage('educationLevel') }}</mat-error></div>
+      <div class="field"><label for="internshipType">Tipo de estágio <em>*</em></label><select id="internshipType" formControlName="internshipType"><option value="">Selecione</option><option *ngFor="let type of internshipTypes" [value]="type[0]">{{ type[1] }}</option></select><mat-error *ngIf="showError('internshipType')">{{ errorMessage('internshipType') }}</mat-error></div>
     </div></section>
     <p class="error" *ngIf="error">{{ error }}</p>
     <footer class="form-actions"><button type="button" class="secondary" (click)="router.navigateByUrl('/inicio')">Cancelar</button><button type="submit" class="primary">Salvar cadastro</button></footer>

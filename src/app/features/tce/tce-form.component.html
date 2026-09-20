@@ -1,8 +1,5 @@
 <main class="form-page">
-  <header class="app-header">
-    <div class="brand"><b>FT</b><span>FAETERJ Petrópolis — Sistema de Gestão de Estágios</span></div>
-    <button type="button" class="exit" (click)="router.navigateByUrl('/tces')">Sair</button>
-  </header>
+  <app-header></app-header>
 
   <section class="page-heading">
     <div>
@@ -10,7 +7,7 @@
       <h1>{{ id ? 'Editar' : 'Cadastrar' }} TCE</h1>
       <p>Preencha os dados do Termo de Compromisso de Estágio.</p>
     </div>
-    <button type="submit" form="tce-form" class="primary header-save">Salvar TCE</button>
+    <div class="heading-actions"><button type="button" class="secondary header-back" (click)="router.navigateByUrl('/tces')">Voltar</button><button type="submit" form="tce-form" class="primary header-save">Salvar TCE</button></div>
   </section>
 
   <form id="tce-form" [formGroup]="form" (ngSubmit)="save()" novalidate>
@@ -64,6 +61,15 @@
             <option [ngValue]="false">Não</option>
           </select>
           <mat-error *ngIf="showError('isPaid')">{{ errorMessage('isPaid') }}</mat-error>
+        </div>
+
+        <div class="field">
+          <label for="internshipType">Tipo de estágio <em>*</em></label>
+          <select id="internshipType" formControlName="internshipType">
+            <option value="">Selecione</option>
+            <option *ngFor="let type of internshipTypes" [value]="type[0]">{{ type[1] }}</option>
+          </select>
+          <mat-error *ngIf="showError('internshipType')">{{ errorMessage('internshipType') }}</mat-error>
         </div>
 
         <div class="field" [class.disabled]="form.controls.isPaid.value !== true">

@@ -1,0 +1,95 @@
+:host {
+  display: block;
+  width: calc(100% + 96px);
+  margin: -36px -48px 0;
+}
+
+header {
+  box-sizing: border-box;
+  display: flex;
+  height: 60px;
+  align-items: center;
+  padding: 0 48px;
+  border-bottom: 1px solid #0a5c9f;
+  background: #073f72;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.brand {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: 10px;
+  color: #f5f9fc;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  background: url('/assets/faeterj-dragon.png') center/contain no-repeat;
+}
+
+nav {
+  display: flex;
+  height: 100%;
+  align-items: stretch;
+  margin-left: auto;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  padding: 3px 17px 0;
+  border-bottom: 3px solid transparent;
+  color: rgba(255, 255, 255, .82);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  outline: 0;
+}
+
+nav a.active {
+  border-bottom-color: #75b8ec;
+  background: rgba(255, 255, 255, .07);
+  color: #fff;
+}
+
+.exit {
+  margin-left: 18px;
+  padding: 9px 4px 11px;
+  border: 0;
+  border-bottom: 3px solid #e53445;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font: 14px Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 1100px) {
+  :host { width: calc(100% + 48px); margin: -24px -24px 0; }
+  header { padding: 0 24px; }
+  .brand-name { display: none; }
+}
+
+@media (max-width: 760px) {
+  :host { width: calc(100% + 28px); margin: -14px -14px 0; }
+  header { padding: 0 14px; }
+  nav a { padding-right: 9px; padding-left: 9px; font-size: 12px; }
+  .exit { margin-left: 7px; font-size: 13px; }
+}
+
+@media (max-width: 480px) {
+  .brand { display: none; }
+  nav { margin-left: 0; }
+  .exit { margin-left: auto; }
+}

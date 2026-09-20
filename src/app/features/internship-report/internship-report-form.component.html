@@ -1,0 +1,28 @@
+<main class="form-page">
+  <app-header></app-header>
+  <section class="page-heading"><div><p class="eyebrow">CONTROLE DE DOCUMENTOS</p><h1>{{ id ? 'Editar' : 'Cadastrar' }} relatório de estágio</h1><p>Os dados pessoais e do contrato são obtidos automaticamente.</p></div><button type="button" class="secondary" (click)="router.navigateByUrl('/internship-reports')">Voltar</button></section>
+
+  <form [formGroup]="form" novalidate>
+    <section class="form-section"><div class="section-title">Dados do aluno</div><div class="form-grid readonly-grid">
+      <div class="field readonly"><label>Aluno</label><input [value]="student?.name || ''" readonly></div>
+      <div class="field readonly"><label>Matrícula</label><input [value]="student?.enrollment || ''" readonly></div>
+      <div class="field readonly"><label>E-mail</label><input [value]="student?.email || ''" readonly></div>
+      <div class="field readonly"><label>Telefone</label><input [value]="student?.phone || ''" readonly></div>
+    </div></section>
+
+    <section class="form-section"><div class="section-title">Dados do estágio</div><div class="form-grid">
+      <div class="field wide"><label for="tceId">TCE / Empresa <em>*</em></label><select id="tceId" formControlName="tceId" (change)="selectTce()"><option value="">Selecione o TCE</option><option *ngFor="let tce of tces" [value]="tce.id">{{ tce.number }} — {{ tce.company }}</option></select><mat-error *ngIf="showError('tceId')">{{ errorMessage('tceId') }}</mat-error></div>
+      <div class="field"><label for="internshipType">Tipo de estágio <em>*</em></label><select id="internshipType" formControlName="internshipType"><option value="">Selecione</option><option *ngFor="let type of internshipTypes" [value]="type[0]">{{ type[1] }}</option></select><mat-error *ngIf="showError('internshipType')">{{ errorMessage('internshipType') }}</mat-error></div>
+      <div class="field readonly"><label>Período no contrato</label><input [value]="selectedTce ? ((selectedTce.startDate | date:'dd/MM/yyyy':'UTC') + ' a ' + (selectedTce.endDate | date:'dd/MM/yyyy':'UTC')) : ''" readonly></div>
+      <div class="field"><label for="reportStartDate">Início do período relatado <em>*</em></label><input id="reportStartDate" type="date" formControlName="reportStartDate" [min]="selectedTce?.startDate?.slice(0,10)" [max]="selectedTce?.endDate?.slice(0,10)"><mat-error *ngIf="showError('reportStartDate')">{{ errorMessage('reportStartDate') }}</mat-error></div>
+      <div class="field"><label for="reportEndDate">Fim do período relatado <em>*</em></label><input id="reportEndDate" type="date" formControlName="reportEndDate" [min]="form.controls.reportStartDate.value || selectedTce?.startDate?.slice(0,10)" [max]="selectedTce?.endDate?.slice(0,10)"><mat-error *ngIf="showError('reportEndDate')">{{ errorMessage('reportEndDate') }}</mat-error></div>
+      <div class="field"><label for="deliveredAt">Data de entrega <em>*</em></label><input id="deliveredAt" type="date" formControlName="deliveredAt"><mat-error *ngIf="showError('deliveredAt')">{{ errorMessage('deliveredAt') }}</mat-error></div>
+      <div class="field"><label for="hoursReported">Horas relatadas <em>*</em></label><input id="hoursReported" formControlName="hoursReported" inputmode="numeric" maxlength="5" (input)="digitsOnly()"><mat-error *ngIf="showError('hoursReported')">{{ errorMessage('hoursReported') }}</mat-error></div>
+      <div class="field textarea-field full"><label for="activities">Atividades realizadas <em>*</em></label><textarea id="activities" formControlName="activities" maxlength="6000" rows="10" placeholder="Descreva as atividades realizadas no período"></textarea><small>{{ form.controls.activities.value?.length || 0 }}/6000</small><mat-error *ngIf="showError('activities')">{{ errorMessage('activities') }}</mat-error></div>
+    </div></section>
+
+    <p class="empty-warning" *ngIf="!tces.length && !error">Nenhum TCE disponível. Cadastre ou regularize um TCE antes de criar o relatório.</p>
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <footer class="form-actions"><button type="button" class="secondary" (click)="router.navigateByUrl('/internship-reports')">Cancelar</button><button type="button" class="primary" [disabled]="saving || !tces.length" (click)="save()">{{ saving ? 'Processando...' : 'Gerar documento' }}</button></footer>
+  </form>
+</main>

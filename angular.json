@@ -16,7 +16,8 @@
             "tsConfig": "tsconfig.app.json",
             "styles": [
               "src/styles.scss"
-            ]
+            ],
+            "assets": ["src/assets"]
           }
         },
         "serve": {

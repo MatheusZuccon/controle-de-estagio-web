@@ -11,7 +11,7 @@ import { AuthService } from '../../core/auth.service';
   template: `
     <main class="login-page">
       <section class="institutional-panel">
-        <div class="institutional-brand"><span class="brand-mark">FT</span><span>FAETERJ Petrópolis</span></div>
+        <div class="institutional-brand"><span class="brand-mark" aria-hidden="true"></span><span>FAETERJ Petrópolis</span></div>
         <div class="welcome-content"><div class="graduate-icon" aria-hidden="true"><svg viewBox="0 0 96 96"><path d="M8 36 48 17l40 19-40 19L8 36Z"/><path d="M27 46v18c0 10 42 10 42 0V46"/><path d="M84 38v25"/><circle cx="84" cy="66" r="4"/></svg></div><h1>Olá, bem-vindo!</h1><p>Acesse o Sistema de Gestão de Estágios da FAETERJ Petrópolis.</p></div>
         <p class="institutional-footer">Setor de Estágio · Ambiente acadêmico</p>
       </section>

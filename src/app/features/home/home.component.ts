@@ -1,19 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
+import { AppHeaderComponent } from '../../shared/app-header.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AppHeaderComponent],
   styleUrl: './home.component.scss',
   template: `
     <main class="home-page">
-      <header class="app-header">
-        <div class="brand"><b>FT</b><span>FAETERJ Petr&#243;polis &#8212; Sistema de Gest&#227;o de Est&#225;gios</span></div>
-        <button type="button" class="exit" (click)="auth.logout()">Sair</button>
-      </header>
+      <app-header></app-header>
 
       <section class="page-heading">
         <p class="eyebrow">SISTEMA DE GEST&#195;O DE EST&#193;GIOS</p>
@@ -24,31 +21,25 @@ import { AuthService } from '../../core/auth.service';
       <nav class="menu-options" aria-label="Controles dispon&#237;veis">
 
         <button *ngIf="auth.isStudent" type="button" class="menu-item" (click)="router.navigateByUrl('/student-profile')">
-          <span class="menu-icon" aria-hidden="true">ES</span>
+          <span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m2.5 8.5 9.5-5 9.5 5-9.5 5-9.5-5Z"/><path d="M6 10.4v4.4c3.7 2.8 8.3 2.8 12 0v-4.4M21.5 8.5v6"/></svg></span>
           <span class="menu-content"><strong>Controle de Estagi&#225;rio</strong><small>Cadastre e mantenha seus dados acad&#234;micos e pessoais.</small></span>
           <span class="menu-arrow" aria-hidden="true">&#8594;</span>
         </button>
         <button *ngIf="auth.isCoordinator || auth.profileCompleted" type="button" class="menu-item" (click)="router.navigateByUrl('/tces')">
-          <span class="menu-icon" aria-hidden="true">TCE</span>
+          <span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 2.5h8l4 4v15H6z"/><path d="M14 2.5v4h4M9 11h6M9 14h6M9 17h4"/></svg></span>
           <span class="menu-content"><strong>Controle TCE</strong><small>Cadastre, acompanhe e gerencie os Termos de Compromisso de Est&#225;gio.</small></span>
           <span class="menu-arrow" aria-hidden="true">&#8594;</span>
         </button>
 
-        <article *ngIf="reportAvailable()" class="menu-item unavailable" aria-label="Controle Relat&#243;rio de est&#225;gio, em breve">
-          <span class="menu-icon" aria-hidden="true">RE</span>
-          <span class="menu-content"><strong>Controle Relat&#243;rio de est&#225;gio</strong><small>Este m&#243;dulo estar&#225; dispon&#237;vel em breve.</small></span>
-          <span class="status">Em breve</span>
-        </article>
+        <button *ngIf="auth.isCoordinator || auth.profileCompleted" type="button" class="menu-item" (click)="router.navigateByUrl('/internship-reports')">
+          <span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4H5v17h14V4h-4M9 2h6v4H9z"/><path d="M9 17v-3m3 3v-6m3 6v-4"/></svg></span>
+          <span class="menu-content"><strong>Controle Relat&#243;rio de est&#225;gio</strong><small>Cadastre, gere e acompanhe seus relat&#243;rios de atividades.</small></span>
+          <span class="menu-arrow" aria-hidden="true">&#8594;</span>
+        </button>
       </nav>
     </main>
   `
 })
-export class HomeComponent implements OnInit {
-  reportAvailable = signal(false);
-  constructor(public auth: AuthService, public router: Router, private http: HttpClient) {}
-  ngOnInit(): void {
-    if (!this.auth.isStudent || !this.auth.profileCompleted) return;
-    const params = new HttpParams().set('status', 'APROVADO').set('pageSize', 1);
-    this.http.get<any>(`${this.auth.api}/tces`, { params }).subscribe({ next: result => this.reportAvailable.set(result.total > 0) });
-  }
+export class HomeComponent {
+  constructor(public auth: AuthService, public router: Router) {}
 }
