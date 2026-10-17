@@ -5,3 +5,8 @@ footer{padding:16px 0 0;border-top:1px solid #dedede}footer>span b{color:#424242
 .app-header{display:flex;align-items:center;justify-content:space-between;box-sizing:border-box;width:calc(100% + 96px);height:60px;margin:-36px -48px 0;padding:0 48px;background:#073f72;border-bottom:1px solid #0a5c9f}.app-header .brand{color:#f5f9fc}.app-header .exit{color:#fff}.page-title{margin:30px 0 34px;color:#212121}@media(max-width:1100px){.app-header{width:calc(100% + 48px);margin:-24px -24px 0;padding:0 24px}}@media(max-width:760px){.app-header{width:calc(100% + 28px);margin:-14px -14px 0;padding:0 14px}.page-title{margin-top:24px}}
 
 .page-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:30px 0 34px}.page-title{margin:0}.header-back{min-width:92px;height:36px;border:1px solid #8d949b;border-radius:3px;background:#fff;color:#20262c;font:600 13px Arial;cursor:pointer}@media(max-width:760px){.page-heading{margin-top:24px}.header-back{min-width:auto;padding:0 12px}}
+
+.sort-button { display: inline-flex; align-items: center; gap: 6px; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.sort-button:hover { color: #0b4f8c; }
+.sort-button:focus-visible { outline: 2px solid #0b4f8c; outline-offset: 3px; }
+.sort-icon { color: #0b4f8c; font-size: 14px; }

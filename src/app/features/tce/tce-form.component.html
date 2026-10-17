@@ -80,13 +80,13 @@
 
         <div class="field">
           <label for="startDate">Início do estágio <em>*</em></label>
-          <input id="startDate" type="date" formControlName="startDate">
+          <input id="startDate" type="date" formControlName="startDate" [attr.min]="today">
           <mat-error *ngIf="showError('startDate')">{{ errorMessage('startDate') }}</mat-error>
         </div>
 
         <div class="field">
           <label for="endDate">Término do estágio <em>*</em></label>
-          <input id="endDate" type="date" formControlName="endDate">
+          <input id="endDate" type="date" formControlName="endDate" [attr.min]="earliestEndDate">
           <mat-error *ngIf="showError('endDate')">{{ errorMessage('endDate') }}</mat-error>
         </div>
       </div>
@@ -105,19 +105,23 @@
             <span>Arquivo atual: <b>{{ existingDocument.originalName }}</b></span>
             <button type="button" (click)="download(existingDocument)">Baixar</button>
           </div>
-          <input id="document" type="file" accept="application/pdf" (change)="file($event, 'document')">
+          <input id="document" type="file" accept="application/pdf" (change)="file($event)">
           <small>{{ document ? 'Novo arquivo selecionado: ' + document.name : existingDocument ? 'Selecione outro PDF somente se desejar substituí-lo.' : 'Nenhum arquivo selecionado' }}</small>
           <mat-error *ngIf="showDocumentError()">Documento do TCE é obrigatório.</mat-error>
         </div>
 
-        <div class="upload">
-          <label for="photo">Foto do estagiário <span>opcional</span></label>
-          <div class="current-file" *ngIf="existingPhoto">
-            <span>Arquivo atual: <b>{{ existingPhoto.originalName }}</b></span>
-            <button type="button" (click)="download(existingPhoto)">Baixar</button>
+        <div class="profile-photo">
+          <span class="profile-photo-title">Foto do estagiário</span>
+          <div class="profile-photo-content">
+            <app-photo-frame [src]="photoPreview()" [allowChange]="false"></app-photo-frame>
+            <div>
+              <p *ngIf="photoPreview()">Foto obtida do cadastro do estagiário.</p>
+              <p *ngIf="photoLoading()">Carregando foto...</p>
+              <p *ngIf="!photoLoading() && !photoPreview() && !photoLoadError()">Nenhuma foto cadastrada.</p>
+              <p *ngIf="photoLoadError()" role="alert" class="photo-error">Não foi possível carregar a foto do cadastro.</p>
+              <p>Para adicionar ou alterar a foto, acesse Meu cadastro.</p>
+            </div>
           </div>
-          <input id="photo" type="file" accept="image/*" (change)="file($event, 'photo')">
-          <small>{{ photo ? 'Nova foto selecionada: ' + photo.name : existingPhoto ? 'Selecione outra imagem somente se desejar substituí-la.' : 'Nenhum arquivo selecionado' }}</small>
         </div>
       </div>
     </section>

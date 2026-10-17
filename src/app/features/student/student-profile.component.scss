@@ -9,3 +9,14 @@
 .header-save{flex:0 0 auto;min-width:118px;height:36px;border-radius:3px;font:600 13px Arial;cursor:pointer}@media(max-width:760px){.page-heading{align-items:flex-start;gap:12px}.header-save{min-width:auto}}
 
 .heading-actions{display:flex;align-items:center;gap:10px}.header-back{min-width:92px;height:36px;border:1px solid #8d949b;border-radius:3px;background:#fff;color:#20262c;font:600 13px Arial;cursor:pointer}@media(max-width:760px){.heading-actions{gap:8px}.header-back{min-width:auto;padding:0 12px}}
+
+.photo-field { min-height: 0; align-items: flex-start; justify-content: flex-start; gap: 8px; padding: 0; border: 0; background: transparent; }
+.photo-label { color: #263c50; font-size: 13px; font-weight: 600; }
+.photo-label span { color: #77838e; font-size: 11px; font-weight: normal; }
+.photo-field small { max-width: 100%; color: #687785; overflow-wrap: anywhere; }
+
+.personal-intro { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 20px; align-items: start; margin-bottom: 34px; }
+.photo-field small { display: block; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 760px) { .personal-intro { grid-template-columns: minmax(0, 1fr); gap: 28px; } .photo-field small { width: auto; max-width: 100%; } }
+
+.photo-field .photo-error { color: #b3261e; white-space: normal; overflow: visible; }
