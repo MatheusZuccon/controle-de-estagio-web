@@ -4,7 +4,6 @@
   <form id="student-profile-form" [formGroup]="form" (ngSubmit)="save()" novalidate>
     <section class="form-section"><div class="section-title">Dados pessoais</div><div class="personal-intro">
       <div class="photo-field">
-        <div class="photo-label">Foto 3x4 <span>opcional</span></div>
         <app-photo-frame [src]="photoPreview()" (photoSelected)="selectPhoto($event)"></app-photo-frame>
         <small *ngIf="photo">{{ photo.name }}</small>
         <small *ngIf="photoLoadError()" role="alert" class="photo-error">Não foi possível carregar a foto cadastrada.</small>
