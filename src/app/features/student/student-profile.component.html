@@ -1,6 +1,6 @@
 <main class="profile-page">
   <app-header></app-header>
-  <section class="page-heading"><div><p class="eyebrow">CONTROLE DE ESTAGI&#193;RIO</p><h1>Meu cadastro</h1><p>Informe seus dados para liberar o controle de TCE.</p></div><div class="heading-actions"><button type="button" class="secondary header-back" (click)="router.navigateByUrl('/inicio')">Voltar</button><button type="submit" form="student-profile-form" class="primary header-save">Salvar cadastro</button></div></section>
+  <section class="page-heading"><div><p class="eyebrow">CONTROLE DE ESTAGI&#193;RIO</p><h1>Meu cadastro</h1><p>Informe seus dados para liberar o controle de TCE.</p></div><div class="heading-actions"><button type="submit" form="student-profile-form" class="primary header-save">Salvar cadastro</button><button type="button" class="secondary back-button" (click)="router.navigateByUrl('/inicio')">Sair</button></div></section>
   <form id="student-profile-form" [formGroup]="form" (ngSubmit)="save()" novalidate>
     <section class="form-section"><div class="section-title">Dados pessoais</div><div class="personal-intro">
       <div class="photo-field">

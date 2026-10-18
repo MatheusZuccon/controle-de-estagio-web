@@ -1,6 +1,6 @@
 <main class="form-page">
   <app-header></app-header>
-  <section class="page-heading"><div><p class="eyebrow">CONTROLE DE DOCUMENTOS</p><h1>{{ id ? 'Editar' : 'Cadastrar' }} relatório de estágio</h1><p>Os dados pessoais e do contrato são obtidos automaticamente.</p></div><button type="button" class="secondary" (click)="router.navigateByUrl('/internship-reports')">Voltar</button></section>
+  <section class="page-heading"><div><p class="eyebrow">CONTROLE DE DOCUMENTOS</p><h1>{{ id ? 'Editar' : 'Cadastrar' }} relatório de estágio</h1><p>Os dados pessoais e do contrato são obtidos automaticamente.</p></div><button type="button" class="secondary back-button" (click)="router.navigateByUrl('/internship-reports')">Sair</button></section>
 
   <form [formGroup]="form" novalidate>
     <section class="form-section"><div class="section-title">Dados do aluno</div><div class="form-grid readonly-grid">

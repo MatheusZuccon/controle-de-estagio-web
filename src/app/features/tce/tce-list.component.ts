@@ -17,7 +17,7 @@ type Action = 'view' | 'edit' | 'submit' | 'review' | 'cancel';
   styleUrl: './tce-list.component.scss',
   template: `
     <main class="tce-page">
-      <app-header></app-header><section class="page-heading"><h1 class="page-title">Controle de TCE</h1><button type="button" class="secondary header-back" (click)="router.navigateByUrl('/inicio')">Voltar</button></section>
+      <app-header></app-header><section class="page-heading"><h1 class="page-title">Controle de TCE</h1><button type="button" class="secondary back-button" (click)="router.navigateByUrl('/inicio')">Sair</button></section>
       <section class="search"><label>Pesquisar por</label><div class="search-row"><select [value]="filterKey()" (change)="changeFilter($any($event.target).value)"><option value="number">Número do TCE</option><option *ngIf="auth.isCoordinator" value="studentName">Nome do estagiário</option><option *ngIf="auth.isCoordinator" value="enrollment">Matrícula do estagiário</option><option value="company">Nome da empresa</option><option value="status">Situação do TCE</option></select><input *ngIf="filterKey() !== 'status'" [formControl]="control()" [placeholder]="placeholder()"><select *ngIf="filterKey() === 'status'" [formControl]="control()"><option value="">Selecione a situação</option><option *ngFor="let status of statuses" [value]="status">{{ label(status) }}</option></select><button class="clear" (click)="clear()">Limpar</button><button class="search-button" (click)="search()">Pesquisar</button></div></section>
       <div class="actions-top"><button *ngIf="!auth.isCoordinator" class="register" (click)="router.navigateByUrl('/tces/new')">+ Cadastrar TCE</button></div>
       <p class="feedback" [class.error]="feedbackError()" *ngIf="feedback()">{{ feedback() }}</p>

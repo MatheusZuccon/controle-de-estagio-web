@@ -7,7 +7,7 @@
       <h1>{{ id ? 'Editar' : 'Cadastrar' }} TCE</h1>
       <p>Preencha os dados do Termo de Compromisso de Estágio.</p>
     </div>
-    <div class="heading-actions"><button type="button" class="secondary header-back" (click)="router.navigateByUrl('/tces')">Voltar</button><button type="submit" form="tce-form" class="primary header-save">Salvar TCE</button></div>
+    <div class="heading-actions"><button type="submit" form="tce-form" class="primary header-save">Salvar TCE</button><button type="button" class="secondary back-button" (click)="router.navigateByUrl('/tces')">Sair</button></div>
   </section>
 
   <form id="tce-form" [formGroup]="form" (ngSubmit)="save()" novalidate>

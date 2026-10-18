@@ -18,7 +18,7 @@ import { PhotoFrameComponent } from '../../shared/photo-frame.component';
   template: `
     <main class="detail-page" *ngIf="tce() as item">
       <app-header></app-header>
-      <section class="heading"><div><p class="eyebrow">CONTROLE DE DOCUMENTOS</p><h1>{{ reviewMode ? 'Analisar' : 'Visualizar' }} TCE</h1><p>Nº {{ item.number }} <span>•</span> {{ item.studentName }} <span>•</span> {{ item.company.name }}</p></div><div class="heading-actions"><button type="button" class="secondary header-back" (click)="router.navigateByUrl('/tces')">Voltar</button><span class="status" [class]="'status '+item.status">{{ label(item.status) }}</span></div></section>
+      <section class="heading"><div><p class="eyebrow">CONTROLE DE DOCUMENTOS</p><h1>{{ reviewMode ? 'Analisar' : 'Visualizar' }} TCE</h1><p>Nº {{ item.number }} <span>•</span> {{ item.studentName }} <span>•</span> {{ item.company.name }}</p></div><div class="heading-actions"><button type="button" class="secondary back-button" (click)="router.navigateByUrl('/tces')">Sair</button><span class="status" [class]="'status '+item.status">{{ label(item.status) }}</span></div></section>
       <p *ngIf="message()" class="feedback" [class.error]="messageError()">{{ message() }}</p>
       <section class="card">
         <div class="tabs"><button type="button" [class.active]="tab() === 'identification'" (click)="tab.set('identification')">Identificação</button><button type="button" [class.active]="tab() === 'history'" (click)="tab.set('history')">Histórico</button></div>

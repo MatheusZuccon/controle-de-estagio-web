@@ -5,3 +5,22 @@
 .photo-action-menu .mat-mdc-menu-content { padding: 4px 0; }
 .photo-action-menu .mat-mdc-menu-item { min-height: 42px; padding: 0 16px; color: #263c50; font: 14px Arial, sans-serif; }
 .photo-action-menu .mat-mdc-menu-item:hover, .photo-action-menu .mat-mdc-menu-item:focus-visible { background: #eef5fb; }
+
+.mat-mdc-menu-panel.account-menu { min-width: 200px; border-radius: 8px; background: #303030; box-shadow: 0 6px 20px rgba(0, 0, 0, .2); }
+.account-menu .mat-mdc-menu-content { padding: 6px 0; }
+.account-menu .mat-mdc-menu-item { min-height: 48px; padding: 0 20px; color: #fff; font: 14px Arial, sans-serif; }
+.account-menu .mat-mdc-menu-item:hover, .account-menu .mat-mdc-menu-item:focus-visible { background: rgba(255, 255, 255, .12); }
+button.secondary.back-button.back-button {
+  min-width: 0;
+  height: auto;
+  padding: 9px 4px 11px;
+  border: 0;
+  border-bottom: 3px solid #e53445;
+  border-radius: 0;
+  background: transparent;
+  color: #20262c;
+  font: 14px Arial, sans-serif;
+  cursor: pointer;
+}
+button.secondary.back-button.back-button:hover { color: #062b4b; background: rgba(6, 43, 75, .05); }
+button.secondary.back-button.back-button:focus-visible { outline: 2px solid #0b628a; outline-offset: 3px; }

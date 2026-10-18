@@ -29,7 +29,7 @@ type Action = 'view' | 'edit' | 'submit' | 'review' | 'cancel';
   template: `
     <main class="report-page">
       <app-header></app-header>
-      <section class="page-heading"><div><p class="eyebrow">CONTROLE DE DOCUMENTOS</p><h1>Relatórios de estágio</h1><p>Cadastre, gere e acompanhe os relatórios de atividades.</p></div><button type="button" class="secondary" (click)="router.navigateByUrl('/inicio')">Voltar</button></section>
+      <section class="page-heading"><div><p class="eyebrow">CONTROLE DE DOCUMENTOS</p><h1>Relatórios de estágio</h1><p>Cadastre, gere e acompanhe os relatórios de atividades.</p></div><button type="button" class="secondary back-button" (click)="router.navigateByUrl('/inicio')">Sair</button></section>
 
       <section class="search">
         <label>Pesquisar por</label>

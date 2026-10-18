@@ -35,7 +35,7 @@ type HoursProgress = { id: string; number: string; company: string; status: stri
   `,
   styles: [`
     :host { display: block; font-family: Arial, sans-serif; color: #203a54; }
-    header { padding: 24px 24px 16px; border-top: 4px solid #0d4f8b; border-bottom: 1px solid #e1e7ed; }
+    header { padding: 24px 24px 16px; border-bottom: 1px solid #e1e7ed; }
     h2[mat-dialog-title] { margin: 0; padding: 0; color: #203a54; font: 600 22px/1.25 Arial, sans-serif; }
     header p { margin: 8px 0 0; color: #637587; font: 14px/1.5 Arial, sans-serif; }
     mat-dialog-content { padding: 20px 24px; }
@@ -50,11 +50,11 @@ type HoursProgress = { id: string; number: string; company: string; status: stri
     .card-heading span { color: #637587; font-size: 13px; overflow-wrap: anywhere; }
     .summary { margin-top: 15px; color: #52677b; font-size: 13px; }
     .summary strong { color: #183b5c; font-size: 14px; }
-    progress { display: block; width: 100%; height: 10px; margin-top: 10px; accent-color: #0d4f8b; }
+    progress { display: block; width: 100%; height: 10px; margin-top: 10px; accent-color: #062b4b; }
     .notice { margin: 0; color: #52677b; font: 14px/1.5 Arial, sans-serif; }
     .notice p { margin: 0 0 10px; }.error { color: #a3211b; }
     mat-dialog-actions { padding: 16px 24px 24px; }
-    .close, .retry { min-height: 38px; padding: 0 16px; border: 1px solid #0d4f8b; border-radius: 4px; background: #0d4f8b; color: white; font: 600 13px Arial, sans-serif; cursor: pointer; }
+    .close, .retry { min-height: 38px; padding: 0 16px; border: 1px solid #062b4b; border-radius: 4px; background: #062b4b; color: white; font: 600 13px Arial, sans-serif; cursor: pointer; }
     button:focus-visible { outline: 3px solid #77a9d4; outline-offset: 2px; }
   `],
 })

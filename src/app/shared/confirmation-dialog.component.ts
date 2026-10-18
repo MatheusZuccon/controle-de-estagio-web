@@ -22,7 +22,7 @@ export type ConfirmationData = { title: string; message: string; confirmLabel?: 
     mat-dialog-actions { gap: 10px; padding: 16px 24px 24px; }
     button { min-height: 38px; padding: 0 16px; border-radius: 4px; font: 600 13px Arial, sans-serif; cursor: pointer; }
     .cancel { border: 1px solid #8d949b; background: #fff; color: #20262c; }
-    .confirm { border: 1px solid #0d4f8b; background: #0d4f8b; color: #fff; }
+    .confirm { border: 1px solid #062b4b; background: #062b4b; color: #fff; }
     .confirm.danger { border-color: #a3211b; background: #a3211b; }
     button:focus-visible { outline: 3px solid #77a9d4; outline-offset: 2px; }
   `],

@@ -17,7 +17,7 @@ import { MatMenuModule } from '@angular/material/menu';
     mat-dialog-content { display: flex; justify-content: center; }
     img { display: block; max-width: 100%; max-height: 60vh; object-fit: contain; }
     mat-dialog-actions { padding: 16px 24px 24px; }
-    button { min-height: 38px; padding: 0 16px; border: 1px solid #0d4f8b; border-radius: 4px; background: #0d4f8b; color: white; font: 600 13px Arial, sans-serif; cursor: pointer; }
+    button { min-height: 38px; padding: 0 16px; border: 1px solid #062b4b; border-radius: 4px; background: #062b4b; color: white; font: 600 13px Arial, sans-serif; cursor: pointer; }
     button:focus-visible { outline: 3px solid #77a9d4; outline-offset: 2px; }
   `],
 })
@@ -45,11 +45,11 @@ export class PhotoPreviewDialogComponent {
     :host { display: inline-block; }
     .frame { display: grid; place-items: center; width: 108px; aspect-ratio: 3 / 4; overflow: hidden; padding: 0; border: 1px dashed #a5b7c6; border-radius: 5px; background: #f8fafc; cursor: pointer; }
     .frame:focus-visible { outline: 3px solid #77a9d4; outline-offset: 2px; }
-    .frame:hover { border-color: #0d4f8b; background: #f0f6fb; }
+    .frame:hover { border-color: #062b4b; background: #f0f6fb; }
     img { display: block; width: 100%; height: 100%; object-fit: contain; }
     .frame:disabled { cursor: default; }
     .empty { color: #728496; font: 11px Arial, sans-serif; }
-    .plus { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #a5b7c6; border-radius: 50%; color: #0d4f8b; font: 300 26px/1 Arial, sans-serif; }
+    .plus { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #a5b7c6; border-radius: 50%; color: #062b4b; font: 300 26px/1 Arial, sans-serif; }
   `],
 })
 export class PhotoFrameComponent {
